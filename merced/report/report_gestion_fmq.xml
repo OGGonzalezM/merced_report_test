@@ -32,16 +32,6 @@
 					<div class="page">
 						<br/>
 						<h1 class="text-capitalize text-center">Reporte de Gestión FMQ</h1>
-						<!-- <div class="row">
-							<div class="col-xs-1"></div>
-							<div class="col-xs-1"></div>
-							<div class="col-xs-1"></div>
-							<div class="col-xs-2"></div>
-							<div class="col-xs-2"></div>
-							<div class="col-xs-1"></div>
-							<div class="col-xs-4"></div>
-							<div class="col-xs-1"><b>Total vendido</b></div> -->
-						<!-- </div> -->
 						<table class="table table-striped">
 							<thead>
 								<th>Caja y folio</th>
@@ -51,6 +41,7 @@
 								<th>Código de los productos</th>
 								<th>Unidades totales</th>
 								<th>Productos</th>
+								<th>Donante</th>
 								<th>Vendedor</th>
 								<th>Total vendido</th>
 							</thead>
@@ -80,6 +71,11 @@
 										<td>
 											<t t-foreach="doc.lines" t-as="l">
 												<p t-field="l.product_id"></p>
+											</t>
+										</td>
+										<td>
+											<t t-foreach="doc.lines" t-as="l">
+												<p t-field="l.product_id.seller_ids"></p>
 											</t>
 										</td>
 										<td>
