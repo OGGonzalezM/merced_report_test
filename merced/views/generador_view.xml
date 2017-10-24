@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+	<record id="generador_form_view" model="ir.ui.view">
+	    	<field name="name">product.product_template_only_form_view.inherited</field>
+	    	<field name="model">product.template</field>
+	    	<field name="inherit_id" ref="product.product_template_only_form_view"></field>
+	    	<field name="arch" type="xml">
+	    		<xpath expr="//field[@name='categ_id']" position="after">
+	    			<field name="class_id" readonly="1"></field>
+	    		</xpath>
+	    		<group>
+	    			<form>
+	        			<xpath expr="//field[@name='categ_id']" position="after">
+		    				<field name="msj_error" class="text-danger"/>
+						<button name="imprimir" string="Generar codigo" type="object" class="oe_highlight"></button>
+	     				</xpath>
+	     	    		</form>
+	     		</group>
+	   	</field>
+	</record>
+    </data>
+</odoo>

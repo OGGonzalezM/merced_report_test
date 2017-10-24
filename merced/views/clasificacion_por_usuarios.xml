@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+
+		<record id="grupos_clasificacion" model="ir.ui.view">
+			<field name="name">res.partner_identificador.inherit</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="add_field_form_view"></field>
+			<field name="groups_id" eval="[(6, 0, [ref('classification_group_manager')])]"/>
+			<field name="arch" type="xml">
+			    <xpath expr="//field[@name='x_identificador']" position="attributes">
+			        <attribute name="readonly">False</attribute>
+			    </xpath>
+			</field>
+		</record>
+
+		<record id="grupo_supervisor_clasificacion" model="ir.ui.view">
+			<field name="name">product.product_template_supervisor_view.inherit</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="merced.generador_form_view"></field>
+			<field name="groups_id" eval="[(6, 0, [ref('classification_group_manager')])]"/>
+			<field name="arch" type="xml">
+			    <xpath expr="//field[@name='class_id']" position="attributes">
+			        <attribute name="readonly">False</attribute>
+			    </xpath>
+			</field>
+		</record>
+
+	</data>
+</odoo>

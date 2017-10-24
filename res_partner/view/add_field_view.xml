@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="add_field_form_view" model="ir.ui.view">
+			<field name="name">base.view_partner_form.inherited</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"></field>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='category_id']" position="after">
+					<field name="nac" placeholder="Fecha de Nacimiento"/>
+				</xpath>
+				<xpath expr="//field[@name='phone']" position="replace">
+					<label for= "tel" string="Teléfono(s)"/>
+					<div>
+						<field name="tel_ofi" placeholder="Oficina" style="width: 35%; margin-right:5px;"/>
+						<field name="ext" placeholder="Extensión" style="width: 27%; margin-right:5px;"/>
+						<field name="tel_cas" placeholder="Casa" style="width: 35%;"/>
+				    </div>
+				</xpath>
+	        </field>
+		</record>
+	</data>
+</odoo>

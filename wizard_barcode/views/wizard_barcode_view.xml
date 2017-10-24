@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="wizard_form_view">
+			<field name="name">wizard_barcode.form</field>
+			<field name="model">merced.codigosbarras</field>
+			<field name="arch" type="xml">
+				<form string="Productos a generar códigos de barras">
+					<group>
+						<field name="product_barcode_ids"></field>
+					</group>
+					<footer>
+						<button name="asignar_codigos" type="object" string="Generar códigos de barras"></button>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<act_window id="launch_barcodes_wizard"
+			name="Generar códigos de barras"
+			src_model="product.template"
+			res_model="merced.codigosbarras"
+			view_mode="form"
+			target="new"
+			key2="client_action_multi" />
+	</data>
+</odoo>

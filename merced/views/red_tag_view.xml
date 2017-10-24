@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="classification_form_view" model="ir.ui.view">
+			<field name="name">red_tag.form</field>
+			<field name="model">redes.tag</field>
+			<field name="arch" type="xml">
+				<form string="Crear: Etiqueta Red">
+					<group>
+                		<field name="name"></field>
+                	</group>
+                </form>
+            </field>
+		</record>
+	</data>
+</odoo>

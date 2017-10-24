@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="template">
+            <t t-extend="Product">
+                <t t-jquery="t" t-operation="after">
+                    <t t-esc="product.default_code"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

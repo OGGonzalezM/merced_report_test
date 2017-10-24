@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="wizard_desactivar_form_view">
+			<field name="name">wizard_desactivar_pos.form</field>
+			<field name="model">almacen.despos</field>
+			<field name="arch" type="xml">
+				<form string="Desactivar productos en el punto de venta">
+					<group>
+						<field name="product_wiz_ids"></field>
+					</group>
+					<footer>
+						<button name="desactivar_enpos" type="object" string="Desactivar en el punto de venta" class="oe_hightlight"></button>
+						o
+						<button special="cancel" string="Cancelar"></button>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<act_window id="launch_des_pos_wizard"
+			name="Desactivar en punto de venta"
+			src_model="product.product"
+			res_model="almacen.despos"
+			view_mode="form"
+			target="new"
+			key2="client_action_multi"/>
+
+	</data>
+</odoo>
