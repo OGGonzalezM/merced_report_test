@@ -30,62 +30,68 @@
 			<t t-call="report.html_container">
 				<t t-call="report.external_layout">
 					<div class="page">
+						<br/>
 						<h1 class="text-capitalize text-center">Reporte de Gestión FMQ</h1>
-						<div class="row">
-							<div class="col-xs-1"><b>Caja y folio</b></div>
-							<div class="col-xs-2"><b>Fecha y hora</b></div>
-							<div class="col-xs-1"><b>Código cliente</b></div>
-							<div class="col-xs-1"><b>Cliente</b></div>
-							<div class="col-xs-2"><b>Código del producto</b></div>
-							<div class="col-xs-1"><b>Unidades totales</b></div>
-							<div class="col-xs-4"><b>Productos</b></div>
-						</div>
-						<div class="row">
-							<t t-foreach="docs" t-as="doc">
-								<div class="row">
-									<!-- Caja y folio -->
-									<div class="col-xs-1">
-										<span t-field="doc.name"></span>
-									</div>
-							
-									<!-- Fecha y hora -->
-									<div class="col-xs-2">
-										<span t-field="doc.date_order"></span>
-									</div>
-							
-									<!-- Código del cliente -->
-									<div class="col-xs-1">
-										<span t-field="doc.partner_id.barcode"></span>
-									</div>
-							
-									<!-- Cliente -->
-									<div class="col-xs-1">
-										<span t-field="doc.partner_id"></span>
-									</div>
-							
-									<!-- Codigos de los productos -->
-									<div class="col-xs-2">
-										<t t-set="contador_productos" t-value="0"></t>
-										<t t-foreach="doc.lines" t-as="l">
-											<span t-field="l.product_id.barcode"></span>
-											<t t-set="contador_productos" t-value="contador_productos + 1"></t>
-										</t>
-									</div>
-							
-									<!-- Unidades totales -->
-									<div class="col-xs-1">
-										<span t-esc="contador_productos"></span>
-									</div>
-							
-									<!-- Productos descripcion-->
-									<div class="col-xs-4">
-										<t t-foreach="doc.lines" t-as="l">
-											<span t-field="l.product_id"></span>
-										</t>
-									</div>
-								</div>
-							</t>
-						</div>
+						<!-- <div class="row">
+							<div class="col-xs-1"></div>
+							<div class="col-xs-1"></div>
+							<div class="col-xs-1"></div>
+							<div class="col-xs-2"></div>
+							<div class="col-xs-2"></div>
+							<div class="col-xs-1"></div>
+							<div class="col-xs-4"></div>
+							<div class="col-xs-1"><b>Total vendido</b></div> -->
+						<!-- </div> -->
+						<table class="table table-striped">
+							<thead>
+								<th>Caja y folio</th>
+								<th>Fecha y hora</th>
+								<th>Código cliente</th>
+								<th>Cliente</th>
+								<th>Código de los productos</th>
+								<th>Unidades totales</th>
+								<th>Productos</th>
+								<th>Vendedor</th>
+								<th>Total vendido</th>
+							</thead>
+							<tbody>
+								<t t-foreach="docs" t-as="doc">
+									<tr>
+										<td>
+											<p t-field="doc.name"></p>
+										</td>
+										<td>
+											<p t-field="doc.date_order"></p>
+										</td>
+										<td>
+											<p t-field="doc.partner_id.barcode"></p>
+										</td>
+										<td><p t-field="doc.partner_id"></p></td>
+										<td>
+											<t t-set="contador_productos" t-value="0"></t>
+											<t t-foreach="doc.lines" t-as="l">
+												<p t-field="l.product_id.barcode"></p>
+												<t t-set="contador_productos" t-value="contador_productos + 1"></t>
+											</t>
+										</td>
+										<td>
+											<p t-esc="contador_productos"></p>
+										</td>
+										<td>
+											<t t-foreach="doc.lines" t-as="l">
+												<p t-field="l.product_id"></p>
+											</t>
+										</td>
+										<td>
+											<p t-field="doc.user_id"></p>
+										</td>
+										<td>
+											<p t-field="doc.amount_total"></p>
+										</td>
+									</tr>
+								</t>
+							</tbody>
+						</table>
 					</div>
 			    </t>
 			</t>

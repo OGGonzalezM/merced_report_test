@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<report 
+			id="report_gestion_fmq"
+			model="pos.order"
+			string="Reporte de Gestion"
+			name="merced.report_gestion_fqm_view"
+			file="merced.report_gestion_fmq"
+			report_type="qweb-pdf"
+			/>
+		
+		<!-- <record id="formato_papel_reporte_gestion" model="report.paperformat">
+		    <field name="name">Formato papel de reporte de gestión</field>
+		    <field name="default" eval="True"/>
+		    <field name="format">custom</field>
+		    <field name="page_height">200</field>
+		    <field name="page_width">00</field>
+		    <field name="orientation">Landscape</field>
+		    <field name="margin_top">3</field>
+		    <field name="margin_bottom">3</field>
+		    <field name="margin_left">3</field>
+		    <field name="margin_right">3</field>
+		    <field name="header_line" eval="False"/>
+		    <field name="header_spacing">2</field>
+		    <field name="dpi">100</field>
+		</record> -->
+
+		<template id="report_gestion_fqm_view">
+			<t t-call="report.html_container">
+				<t t-call="report.external_layout">
+					<div class="page">
+						<br/>
+						<h1 class="text-capitalize text-center">Reporte de Gestión FMQ</h1>
+						<div class="row">
+							<div class="col-xs-1"><b>Caja y folio</b></div>
+							<div class="col-xs-1"><b>Fecha y hora</b></div>
+							<div class="col-xs-1"><b>Código cliente</b></div>
+							<div class="col-xs-2"><b>Cliente</b></div>
+							<div class="col-xs-2"><b>Código del producto</b></div>
+							<div class="col-xs-1"><b>Unidades totales</b></div>
+							<div class="col-xs-4"><b>Productos</b></div>
+							<!-- <div class="col-xs-1"><b>Total vendido</b></div> -->
+						</div>
+						<t t-foreach="docs" t-as="doc">
+							<div class="row">
+								<!-- Caja y folio -->
+								<div class="col-xs-1">
+									<p t-field="doc.name"></p>
+								</div>
+								<!-- Fecha y hora -->
+								<div class="col-xs-1">
+									<p t-field="doc.date_order"></p>
+								</div>
+								<!-- Código del cliente -->
+								<div class="col-xs-1">
+									<p t-field="doc.partner_id.barcode"></p>
+								</div>
+								<!-- Cliente -->
+								<div class="col-xs-2">
+									<p t-field="doc.partner_id"></p>
+								</div>
+								<!-- Codigo de los productos -->
+								<div class="col-xs-2">
+									<t t-set="contador_productos" t-value="0"></t>
+									<t t-foreach="doc.lines" t-as="l">
+										<p t-field="l.product_id.barcode"></p>
+										<t t-set="contador_productos" t-value="contador_productos + 1"></t>
+									</t>
+								</div>
+								<!-- Unidades totales -->
+								<div class="col-xs-1">
+									<p t-esc="contador_productos"></p>
+								</div>
+								<!-- Productos descripcion-->
+								<div class="col-xs-3">
+									<t t-foreach="doc.lines" t-as="l">
+										<p t-field="l.product_id"></p>
+									</t>
+								</div>
+								<!-- Total vendido -->
+								<!-- <div class="col-xs-1">
+									<span t-field="doc.amount_total"></span>
+								</div> -->
+							</div>
+						</t>
+					</div>
+			    </t>
+			</t>
+		</template>
+	</data>
+</odoo>
